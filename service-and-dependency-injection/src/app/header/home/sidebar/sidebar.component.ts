@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SubscribeService } from '../../../services/subscribe.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+
+  OnSubscribe() {
+    let subscribeService = new SubscribeService()
+    subscribeService.OnSubscribe('sidebar component')
+
+
+  }
 
 }
