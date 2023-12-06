@@ -4,14 +4,16 @@ import { SubscribeService } from '../../../services/subscribe.service';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  styleUrl: './hero.component.css',
+  providers: [SubscribeService]
 })
+
 export class HeroComponent {
 
-  OnSubscribe() {
-    let subscribeService = new SubscribeService()
-    subscribeService.OnSubscribe('header component')
+  constructor(private subService: SubscribeService) { }
 
+  OnSubscribe() {
+    this.subService.OnSubscribe('new hero component')
   }
 
 }

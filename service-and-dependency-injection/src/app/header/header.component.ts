@@ -4,7 +4,8 @@ import { SubscribeService } from '../services/subscribe.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  providers: [SubscribeService]
 })
 
 export class HeaderComponent {
@@ -21,11 +22,10 @@ export class HeaderComponent {
     this.selectedTab = 'admin';
   }
 
-  OnSubscribe() {
-    //this.subService.OnSubscribeClicked('monthly');
-    let subscribeService = new SubscribeService()
-    subscribeService.OnSubscribe('header component')
+  constructor(private subscribeService: SubscribeService){}
 
+  OnSubscribe() {
+    this.subscribeService.OnSubscribe('new header component')
   }
 
 }

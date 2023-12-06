@@ -4,15 +4,15 @@ import { SubscribeService } from '../../../services/subscribe.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
+  providers: [SubscribeService]
 })
 export class SidebarComponent {
 
+  constructor(private subscribeService: SubscribeService) {}
+
   OnSubscribe() {
-    let subscribeService = new SubscribeService()
-    subscribeService.OnSubscribe('sidebar component')
-
-
+    this.subscribeService.OnSubscribe('new sidebar component')
   }
 
 }
