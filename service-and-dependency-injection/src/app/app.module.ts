@@ -9,6 +9,8 @@ import { HomeComponent } from './header/home/home.component';
 import { HeroComponent } from './header/home/hero/hero.component';
 import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './header/admin/user-list/user-list.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     AdminComponent,
     HomeComponent,
     HeroComponent,
-    SidebarComponent
+    SidebarComponent,
+    UserListComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
 
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
