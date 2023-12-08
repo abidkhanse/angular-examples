@@ -5,7 +5,6 @@ import { SubscribeService } from '../../../services/subscribe.service';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
-  providers: [SubscribeService]
 })
 export class SidebarComponent {
 
