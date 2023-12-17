@@ -11,6 +11,7 @@ import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './header/admin/user-list/user-list.component';
 import { UserService } from './services/user.service';
+import { LoggerService } from './services/logger.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { UserService } from './services/user.service';
     FormsModule
 
   ],
-  providers: [UserService],
+  providers: [UserService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
