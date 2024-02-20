@@ -14,5 +14,10 @@ export class User {
 
     }
 
+    toString(): string {
+        return `{ "name": "${this.name}", "gender": "${this.gender}", "subtype": "${this.subtype}", "status": "${this.status}" }`
+      }
+       
 
 }
+

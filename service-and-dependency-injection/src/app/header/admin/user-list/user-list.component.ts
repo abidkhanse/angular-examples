@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/User';
+import { LoggerService } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-user-list',
@@ -8,10 +10,23 @@ import { UserService } from '../../../services/user.service';
 })
 export class UserListComponent {
 
-  constructor(private userService: UserService) { 
+  // another way to inject service
+  loggerService = inject(LoggerService)
 
-  }
+  constructor(private userService: UserService) { }
 
   userList = this.userService.GetAllUsers()
+
+  showUserDetails(user: User) {
+
+    this.loggerService.log(UserListComponent.name, user.toString())
+
+    this.userService.onShowUserDetails(user)
+
+
+
+
+  
+  }
 
 }

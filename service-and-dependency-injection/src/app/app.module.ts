@@ -11,8 +11,11 @@ import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './header/admin/user-list/user-list.component';
 import { UserService } from './services/user.service';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { LoggerService } from './services/logger.service';
+import { UserDetailComponent } from './header/admin/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeroComponent,
     SidebarComponent,
     UserListComponent,
-
+    UserDetailComponent,
   
   ],
   imports: [
@@ -34,7 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
   ],
-  providers: [UserService],
+  providers: [UserService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
