@@ -12,6 +12,14 @@ import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './header/admin/user-list/user-list.component';
 import { UserService } from './services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+registerLocaleData(en);
 
 
 @NgModule({
@@ -31,10 +39,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
 
 
   ],
-  providers: [UserService],
+  providers: [UserService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
