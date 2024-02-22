@@ -20,12 +20,12 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity <User> signup(@RequestBody SignupRequest signupRequest) {
+    public ResponseEntity<User> signup(@RequestBody SignupRequest signupRequest) {
         return ResponseEntity.ok(authenticationService.signup(signupRequest));
     }
 
     @PostMapping("/signin")
-    public ResponseEntity <JwtAuthResponse> signin(@RequestBody SignInRequest signInRequest) {
+    public ResponseEntity<JwtAuthResponse> signin(@RequestBody SignInRequest signInRequest) {
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 
