@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 const BASIC_URL = "http://localhost:8000"
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +15,6 @@ export class AuthService {
   signup(signupRequest : any) : Observable<any> {
     return this.http.post<[]>(BASIC_URL + "/auth/signup" , signupRequest)
   }
-
+  
 
 }

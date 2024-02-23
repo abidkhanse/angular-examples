@@ -1,6 +1,5 @@
 package org.example.simple_jwt_solution.services;
 
-
 import lombok.RequiredArgsConstructor;
 import org.example.simple_jwt_solution.dto.JwtAuthResponse;
 import org.example.simple_jwt_solution.dto.SignInRequest;
@@ -24,7 +23,13 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
     public User signup(SignupRequest signupRequest) {
 
+        boolean found = userRepository.findByEmail(signupRequest.getEmail()).isPresent();
+        if (found) {
+            return null;
+        }
+
         User user = new User();
+
         user.setEmail(signupRequest.getEmail());
         user.setFirstname(signupRequest.getFirstName());
         user.setLastname(signupRequest.getLastName());

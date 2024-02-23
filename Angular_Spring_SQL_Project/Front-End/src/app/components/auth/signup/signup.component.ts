@@ -48,12 +48,12 @@ export class SignupComponent implements OnInit {
           console.log('email:',     emailValue);
           console.log('Password:', passwordValue);
 
-          this.authService.signup(this.signupForm.value).subscribe( (res) => {
-            console.log("Response : " + res)
-          }
-
-          )
-
+          this.authService.signup(this.signupForm.value)
+          .subscribe( {
+            next: (res)   => { console.log("Response: ", res) },
+            error: (err)  => {console.log("Error: ", err)},
+            complete: ()  => console.log("Exerything looks good")
+          })
 
     }
 
