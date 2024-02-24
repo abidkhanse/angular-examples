@@ -1,14 +1,21 @@
 package org.example.simple_jwt_solution.services;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.example.simple_jwt_solution.dto.JwtAuthResponse;
 import org.example.simple_jwt_solution.dto.SignInRequest;
 import org.example.simple_jwt_solution.dto.SignupRequest;
 import org.example.simple_jwt_solution.entities.Role;
 import org.example.simple_jwt_solution.entities.User;
 import org.example.simple_jwt_solution.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,17 +48,43 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
     public JwtAuthResponse signIn(SignInRequest signInRequest) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword()));
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
 
-        User user = userRepository
-                .findByEmail(signInRequest.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user name or password"));
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            signInRequest.getEmail(),
+                            signInRequest.getPassword()));
+        } catch (AuthenticationException ex) {
 
+            jwtAuthResponse.setToken(null);
+            jwtAuthResponse.setRefreshToken(null);
+            jwtAuthResponse.setStatus(HttpStatus.UNAUTHORIZED);
+            jwtAuthResponse.setMessage("Invalid email/password provided");
+
+            return jwtAuthResponse;      
+        }
+
+        Optional<User> userOptional = userRepository.findByEmail(signInRequest.getEmail());
+        if (!userOptional.isPresent()) {
+            
+            jwtAuthResponse.setToken(null);
+            jwtAuthResponse.setRefreshToken(null);
+            jwtAuthResponse.setStatus(HttpStatus.LOCKED);
+            jwtAuthResponse.setMessage("User might be locked");
+
+            return jwtAuthResponse;
+
+        }
+
+        User user = userOptional.get();
         String token = jwtService.generateToken(user);
 
-        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
-        jwtAuthResponse.setToken(token);
+        jwtAuthResponse.setToken(token);       
+        jwtAuthResponse.setRefreshToken(null);
+        jwtAuthResponse.setStatus(HttpStatus.OK);
+        jwtAuthResponse.setMessage("Success");
+
         return jwtAuthResponse;
     }
 

@@ -8,6 +8,7 @@ import org.example.simple_jwt_solution.entities.User;
 public interface AuthenticationService {
 
     User signup(SignupRequest signupRequest);
+
     JwtAuthResponse signIn(SignInRequest signInRequest);
 
 }

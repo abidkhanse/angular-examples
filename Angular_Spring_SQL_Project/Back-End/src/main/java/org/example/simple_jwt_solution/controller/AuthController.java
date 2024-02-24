@@ -33,8 +33,17 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<JwtAuthResponse> signin(@RequestBody SignInRequest signInRequest) {
-        return ResponseEntity.ok(authenticationService.signIn(signInRequest));
+    public ResponseEntity<?> signin(@RequestBody SignInRequest signInRequest) {
+
+        JwtAuthResponse jwtAuthResponse = authenticationService.signIn(signInRequest);
+
+        if (jwtAuthResponse.getStatus() != HttpStatus.OK) {
+            return ResponseEntity.status(jwtAuthResponse.getStatus())
+                    .body(jwtAuthResponse.getMessage());
+        }
+
+        return ResponseEntity.ok(jwtAuthResponse);
+
     }
 
 }

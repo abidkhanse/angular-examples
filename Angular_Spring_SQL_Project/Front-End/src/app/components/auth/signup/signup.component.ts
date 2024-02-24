@@ -4,10 +4,6 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
 @Component({
   selector: 'app-signup',
   standalone: true,
