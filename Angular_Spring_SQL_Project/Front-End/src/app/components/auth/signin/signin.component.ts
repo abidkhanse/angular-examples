@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, NgControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { LocaldbService } from '../../../services/storage/localdb.service';
+import { routes } from '../../../app.routes';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +16,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule, 
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
@@ -25,13 +29,14 @@ export class SigninComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     private authService: AuthService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['abid@gmail.com', [Validators.required, Validators.email]],
+      password: ['admin', Validators.required]
     });
   }
 
@@ -41,9 +46,22 @@ export class SigninComponent implements OnInit {
       this.authService.signin(this.signInForm.value)
 
           .subscribe( {
+
             next: (res)   => { 
-              console.log("Response: ", res) 
+
+              console.log("Status: ", res.status) 
+              console.log("Token: ", res.token) 
+
+              LocaldbService.saveToken(res.token)
+              LocaldbService.saveRole(res.role)
               this.toastService.success('Login successful!', 'Success');
+              
+              if(res.role === "ADMIN") {
+                this.router.navigateByUrl("admin/dashboard")
+              } else if(res.role === "USER") {
+                this.router.navigateByUrl("customer/dashboard")
+              }
+              
             },
             error: (err)  => {
               console.log("Error: ", err)

@@ -52,24 +52,27 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
         try {
             authenticationManager.authenticate(
+
                     new UsernamePasswordAuthenticationToken(
                             signInRequest.getEmail(),
                             signInRequest.getPassword()));
+
         } catch (AuthenticationException ex) {
 
             jwtAuthResponse.setToken(null);
-            jwtAuthResponse.setRefreshToken(null);
+            jwtAuthResponse.setRole(null);
             jwtAuthResponse.setStatus(HttpStatus.UNAUTHORIZED);
             jwtAuthResponse.setMessage("Invalid email/password provided");
 
-            return jwtAuthResponse;      
+            return jwtAuthResponse;
         }
 
         Optional<User> userOptional = userRepository.findByEmail(signInRequest.getEmail());
+
         if (!userOptional.isPresent()) {
-            
+
             jwtAuthResponse.setToken(null);
-            jwtAuthResponse.setRefreshToken(null);
+            jwtAuthResponse.setRole(null);
             jwtAuthResponse.setStatus(HttpStatus.LOCKED);
             jwtAuthResponse.setMessage("User might be locked");
 
@@ -80,8 +83,8 @@ public class AuthenticationServiceImp implements AuthenticationService {
         User user = userOptional.get();
         String token = jwtService.generateToken(user);
 
-        jwtAuthResponse.setToken(token);       
-        jwtAuthResponse.setRefreshToken(null);
+        jwtAuthResponse.setToken(token);
+        jwtAuthResponse.setRole(user.getRole().name());
         jwtAuthResponse.setStatus(HttpStatus.OK);
         jwtAuthResponse.setMessage("Success");
 
