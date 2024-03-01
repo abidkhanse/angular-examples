@@ -1,2 +1,49 @@
-<h1> Resturant Management System</h1>
+<div *ngIf="!isSessionActive"> 
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">Restaurant Management System</div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="./signup" routerLinkActive="active" class="nav-link">Sign-Up</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="./signin" routerLinkActive="active" class="nav-link">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div *ngIf="isAdminloggedIn"> 
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">Restaurant Management System</div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="./admin/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="./signin" routerLinkActive="active" class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div *ngIf="isCustomerloggedIn"> 
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">Restaurant Management System</div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="./customer/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="./signin" routerLinkActive="active" class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
 <router-outlet></router-outlet>
+  

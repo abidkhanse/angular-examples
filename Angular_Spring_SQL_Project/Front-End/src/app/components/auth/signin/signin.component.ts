@@ -1,13 +1,12 @@
 // signin.component.ts
 
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroup, NgControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { LocaldbService } from '../../../services/storage/localdb.service';
-import { routes } from '../../../app.routes';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({

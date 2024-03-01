@@ -9,8 +9,6 @@ const ROLE = "role"
 
 export class LocaldbService {
 
-  constructor() { }
-
   static saveToken(token: string) {
     window.localStorage.removeItem(TOKEN)
     window.localStorage.setItem(TOKEN, token)
@@ -25,7 +23,7 @@ export class LocaldbService {
     window.localStorage.setItem(ROLE, role)
   }
 
-  static getRole() {
+  static getRole() : string{
     return window.localStorage.getItem(ROLE)
   }
 
@@ -33,5 +31,17 @@ export class LocaldbService {
     window.localStorage.removeItem(TOKEN)
     window.localStorage.removeItem(ROLE)
   }
-  
+
+  static isSessionActive() : boolean {
+    return this.getToken() !== null
+  }
+
+  static isAdminLoggedIn() : boolean {  
+    return this.getRole() !== null && this.getRole().toLowerCase() === "admin"
+  }
+
+  static isCustomerLoggedIn() : boolean {
+    return this.getRole() !== null && this.getRole().toLowerCase() !== "admin"
+  }
+
 }
