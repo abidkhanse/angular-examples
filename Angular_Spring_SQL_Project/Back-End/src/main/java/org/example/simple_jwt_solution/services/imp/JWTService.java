@@ -1,4 +1,4 @@
-package org.example.simple_jwt_solution.services;
+package org.example.simple_jwt_solution.services.imp;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,0 +1,31 @@
+<div class="category-container">
+    <h2>Add New Category</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="categoryName">Category Name:</label>
+        <input type="text" id="categoryName" formControlName="categoryName">
+        <div *ngIf="categoryForm.get('categoryName').invalid && categoryForm.get('categoryName').touched" class="error-message">
+          Category Name is required.
+        </div>
+      </div>
+      <div>
+        <label for="categoryType">Category Type:</label>
+        <input type="text" id="categoryType" formControlName="categoryType">
+        <div *ngIf="categoryForm.get('categoryType').invalid && categoryForm.get('categoryType').touched" class="error-message">
+          Category Type is required.
+        </div>
+      </div>
+      <div>
+        <label for="categoryImage">Category Image:</label>
+        <input type="file" id="categoryImage" (change)="onFileSelected($event)" accept="image/*">
+        <div *ngIf="categoryForm.get('categoryImage').invalid && categoryForm.get('categoryImage').touched" class="error-message">
+          Please select an image.
+        </div>
+      </div>
+      <div *ngIf="selectedImage">
+        <img [src]="selectedImage" alt="Selected Image" class="selected-image">
+      </div>
+      <button type="submit" [disabled]="categoryForm.invalid">Add Category</button>
+    </form>
+  </div>
+  

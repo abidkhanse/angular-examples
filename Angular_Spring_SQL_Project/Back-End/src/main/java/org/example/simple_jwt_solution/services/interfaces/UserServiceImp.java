@@ -1,9 +1,10 @@
-package org.example.simple_jwt_solution.services;
+package org.example.simple_jwt_solution.services.interfaces;
 
 
 import lombok.RequiredArgsConstructor;
 import org.example.simple_jwt_solution.entities.User;
 import org.example.simple_jwt_solution.repository.UserRepository;
+import org.example.simple_jwt_solution.services.imp.UserService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package org.example.simple_jwt_solution.services;
+package org.example.simple_jwt_solution.services.interfaces;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,10 +10,10 @@ import org.example.simple_jwt_solution.dto.SignupRequest;
 import org.example.simple_jwt_solution.entities.Role;
 import org.example.simple_jwt_solution.entities.User;
 import org.example.simple_jwt_solution.repository.UserRepository;
+import org.example.simple_jwt_solution.services.imp.AuthenticationService;
+import org.example.simple_jwt_solution.services.imp.JWTService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;

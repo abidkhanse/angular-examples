@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { LocaldbService } from './services/storage/localdb.service';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +8,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     RouterOutlet, 
-    SignupComponent,
     RouterModule,
     CommonModule
   ],
@@ -41,6 +39,10 @@ export class AppComponent {
         this.updateStatus()
       }
     })
+  }
+
+  goToCategoty() {
+      
   }
 
   logout() {

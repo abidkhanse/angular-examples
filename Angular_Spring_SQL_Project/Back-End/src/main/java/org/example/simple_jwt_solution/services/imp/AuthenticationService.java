@@ -1,4 +1,4 @@
-package org.example.simple_jwt_solution.services;
+package org.example.simple_jwt_solution.services.imp;
 
 import org.example.simple_jwt_solution.dto.JwtAuthResponse;
 import org.example.simple_jwt_solution.dto.SignInRequest;

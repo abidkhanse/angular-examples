@@ -1,4 +1,4 @@
-package org.example.simple_jwt_solution.services;
+package org.example.simple_jwt_solution.services.interfaces;
 
 
 import io.jsonwebtoken.Claims;
@@ -6,6 +6,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
+import org.example.simple_jwt_solution.services.imp.JWTService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

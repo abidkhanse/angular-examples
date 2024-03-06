@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
-      email: ['abid@gmail.com', [Validators.required, Validators.email]],
+      email: ['test@test.com', [Validators.required, Validators.email]],
       password: ['admin', Validators.required]
     });
   }
@@ -53,7 +53,10 @@ export class SigninComponent implements OnInit {
 
               LocaldbService.saveToken(res.token)
               LocaldbService.saveRole(res.role)
-              this.toastService.success('Login successful!', 'Success');
+
+              this.toastService.success('Login successful!', 'Success' , {
+                positionClass: 'toast-bottom-right' 
+              });
               
               if(res.role === "ADMIN") {
                 this.router.navigateByUrl("admin/dashboard")
@@ -64,7 +67,9 @@ export class SigninComponent implements OnInit {
             },
             error: (err)  => {
               console.log("Error: ", err)
-              this.toastService.error(err.error, "Error")
+              this.toastService.error(err.error, "Error", {
+                positionClass: 'toast-bottom-right' 
+              });
             },
             complete: ()  => console.log("Exerything looks good")
           })

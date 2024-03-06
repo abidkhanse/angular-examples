@@ -2,7 +2,7 @@ package org.example.simple_jwt_solution.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.example.simple_jwt_solution.entities.Role;
-import org.example.simple_jwt_solution.services.UserService;
+import org.example.simple_jwt_solution.services.imp.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,8 @@ public class SecurityConfiguration {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/auth/**").permitAll()
+
+                request.requestMatchers("/auth/**").permitAll()
 
                         .requestMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.toString())
 
@@ -53,7 +54,7 @@ public class SecurityConfiguration {
 
                 );
 
-                return httpSecurity.build();
+        return httpSecurity.build();
     }
 
     @Bean
@@ -70,11 +71,9 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-                return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
-
-
-
 
 }

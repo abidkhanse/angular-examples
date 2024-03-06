@@ -5,7 +5,7 @@ import org.example.simple_jwt_solution.dto.JwtAuthResponse;
 import org.example.simple_jwt_solution.dto.SignInRequest;
 import org.example.simple_jwt_solution.dto.SignupRequest;
 import org.example.simple_jwt_solution.entities.User;
-import org.example.simple_jwt_solution.services.AuthenticationService;
+import org.example.simple_jwt_solution.services.imp.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,8 +38,10 @@ public class AuthController {
         JwtAuthResponse jwtAuthResponse = authenticationService.signIn(signInRequest);
 
         if (jwtAuthResponse.getStatus() != HttpStatus.OK) {
+
             return ResponseEntity.status(jwtAuthResponse.getStatus())
                     .body(jwtAuthResponse.getMessage());
+        
         }
 
         return ResponseEntity.ok(jwtAuthResponse);
