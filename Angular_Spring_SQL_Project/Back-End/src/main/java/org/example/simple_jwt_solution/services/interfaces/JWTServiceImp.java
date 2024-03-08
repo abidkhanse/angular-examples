@@ -32,8 +32,7 @@ public class JWTServiceImp implements JWTService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + twoHours))
-                //.signWith(getSignKey(), SignatureAlgorithm.HS256)
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
+                .signWith(getSignKey())
                 .compact();
     }
 
@@ -41,18 +40,6 @@ public class JWTServiceImp implements JWTService {
        byte[] keyBytes = Decoders.BASE64.decode(tokenSecretKey);
        return Keys.hmacShaKeyFor(keyBytes);
     }
-
-/*
-    @Override
-    public String refreshToken(Map<String, Object> claims, UserDetails userDetails) {
-
-        return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 48 ))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
- */
 
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);

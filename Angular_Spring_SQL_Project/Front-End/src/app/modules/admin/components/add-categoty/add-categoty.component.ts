@@ -20,7 +20,7 @@ export class AddCategotyComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private adminService: AdminService
-    ) 
+    )
     {}
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class AddCategotyComponent implements OnInit {
     this.adminService.postCategory(formData)
     .subscribe( {
 
-      next: (res)   => { 
+      next: (res)   => {
         console.log("Response", res)
       },
 

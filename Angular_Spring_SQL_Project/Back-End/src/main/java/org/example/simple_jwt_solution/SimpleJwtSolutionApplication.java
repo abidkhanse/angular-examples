@@ -24,7 +24,9 @@ public class SimpleJwtSolutionApplication implements CommandLineRunner {
     public void run(String... args) {
 
         User adminAccount = userRepository.findByRole(Role.ADMIN);
+
         if (null == adminAccount) {
+
             User user = new User();
 
             user.setEmail("test@test.com");
@@ -33,7 +35,9 @@ public class SimpleJwtSolutionApplication implements CommandLineRunner {
             user.setRole(Role.ADMIN);
             user.setPassword(new BCryptPasswordEncoder().encode("admin"));
             userRepository.save(user);
+
         }
+
     }
 
 }

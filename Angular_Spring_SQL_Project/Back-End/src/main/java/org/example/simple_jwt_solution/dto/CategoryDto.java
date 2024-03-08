@@ -8,12 +8,12 @@ public class CategoryDto {
 
     private Integer id;
 
-    private String categoryName;
+    private String name;
 
     private String description;
 
-    private MultipartFile img;
+     private MultipartFile img;
 
-    private byte[] returnedImg;
+     private byte[] returnedImg;
 
 }

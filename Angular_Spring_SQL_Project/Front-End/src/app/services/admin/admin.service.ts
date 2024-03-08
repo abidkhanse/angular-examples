@@ -15,23 +15,33 @@ export class AdminService {
 
   postCategory(CategoryDto: any) : Observable<any> {
 
+    console.log("URL: " + BASIC_URL + "/admin/category");
     return this.http.post<[]>(BASIC_URL + "/admin/category" , CategoryDto, {
-
       headers: this.createAuthHeader()
-    
     })
 
   }
 
-  createAuthHeader() : HttpHeaders {
+  createAuthHeader_() : HttpHeaders {
 
     let header : HttpHeaders = new HttpHeaders();
 
-    header.set("Authorization", "Bearer " + LocaldbService.getToken())
+    console.log("TOKEN: ", "Bearer " + LocaldbService.getToken())
+    header = header.set("Authorization", "Bearer " + LocaldbService.getToken());
+    console.log("TOKEN", header.get("Authorization"));
 
     return header
-   
+
   }
 
-    
+  createAuthHeader(): HttpHeaders {
+    const token = LocaldbService.getToken(); // Ensure this retrieves the token correctly
+
+    console.log("Token", token)
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
+
+
 }

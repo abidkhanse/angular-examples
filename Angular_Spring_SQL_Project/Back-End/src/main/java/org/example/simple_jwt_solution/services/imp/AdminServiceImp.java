@@ -21,16 +21,16 @@ public class AdminServiceImp implements AdminService {
     public CategoryDto postCategory(CategoryDto categoryDto) throws IOException {
 
         Category category = new Category();
-        category.setName(categoryDto.getCategoryName());
+
+        category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
         category.setImg(categoryDto.getImg().getBytes());
 
         Category result = categoryRepository.save(category);
 
-        CategoryDto cd = new CategoryDto();
-        cd.setId(result.getId());
+        categoryDto.setId(result.getId());
 
-        return cd;
+        return categoryDto;
 
     }
 
