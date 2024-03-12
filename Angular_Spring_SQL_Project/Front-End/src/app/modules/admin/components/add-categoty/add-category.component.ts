@@ -2,26 +2,28 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AdminService } from '../../../../services/admin/admin.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-categoty',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-categoty.component.html',
-  styleUrl: './add-categoty.component.css'
+  templateUrl: './add-category.component.html',
+  styleUrl: './add-category.component.css'
 })
 
-export class AddCategotyComponent implements OnInit {
+export class AddCategoryComponent implements OnInit {
 
   categoryForm: FormGroup;
   selectedImage: any;
   selectFile: File
 
   constructor(
-      private formBuilder: FormBuilder,
-      private adminService: AdminService
-    )
-    {}
+    private formBuilder: FormBuilder,
+    private adminService: AdminService,
+    private toastService: ToastrService,
+  )
+  {}
 
   ngOnInit(): void {
 
@@ -34,37 +36,40 @@ export class AddCategotyComponent implements OnInit {
   }
 
   onSubmit() {
-
     const categoryName = this.categoryForm.get('categoryName').value;
     const categoryType = this.categoryForm.get('categoryType').value;
     const categoryImg  = this.categoryForm.get('categoryImage').value;
 
     const formData : FormData = new FormData()
 
-    formData.append("img",categoryImg)
-    formData.append("name",categoryName)
-    formData.append("description",categoryType)
+    formData.append("img", categoryImg)
+    formData.append("name", categoryName)
+    formData.append("description", categoryType)
 
     this.adminService.postCategory(formData)
-    .subscribe( {
 
-      next: (res)   => {
-        console.log("Response", res)
-      },
+      .subscribe( {
 
-      error: (err)  => {
-        console.log("Error: ", err)
-      },
+        next: (res)   => {
+          console.log("Result", res.id + " " + res.name );
+          this.toastService.success('Category ' + res.name  +  ' created successfully!', 'Success', {
+            positionClass: 'toast-bottom-right'
+          });
+        },
 
-      complete: ()  => console.log("File uploaded")
+        error: (err)  => {
+          console.log("Error", err);
+          this.toastService.error('Unable to create category ' + err.error.name + ' Code ' + err.error.status, 'Error', {
+            positionClass: 'toast-bottom-right'
+          });
+        },
 
-    })
+        complete: ()  =>  console.log("Category created")
 
-
-
-
+      })
 
   }
+
 
   onFileSelected(event: any) {
 
@@ -79,6 +84,7 @@ export class AddCategotyComponent implements OnInit {
         });
       };
       reader.readAsDataURL(this.selectFile);
+
     }
 
   }

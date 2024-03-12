@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AddCategotyComponent } from './components/add-categoty/add-categoty.component';
+import { AddCategoryComponent } from './components/add-categoty/add-category.component';
 
 
 @NgModule({
