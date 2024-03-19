@@ -2,10 +2,9 @@ package org.example.simple_jwt_solution.dto;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class CategoryResponse {
+public class ResultResponse {
 
     private Integer id;
 
@@ -15,7 +14,7 @@ public class CategoryResponse {
 
     private String message;
 
-    public CategoryResponse(String name) {
+    public ResultResponse(String name) {
         this.message = "unsuccessful";
         this.status = HttpStatus.BAD_REQUEST;
         this.id = -1;

@@ -19,24 +19,40 @@ export class AdminService {
     return this.http.post<[]>(BASIC_URL + "/admin/category" , CategoryDto, {
       headers: this.createAuthHeader()
     })
-
   }
 
-  createAuthHeader_() : HttpHeaders {
+  getAllCategories() : Observable<any> {
 
-    let header : HttpHeaders = new HttpHeaders();
-
-    console.log("TOKEN: ", "Bearer " + LocaldbService.getToken())
-    header = header.set("Authorization", "Bearer " + LocaldbService.getToken());
-    console.log("TOKEN", header.get("Authorization"));
-
-    return header
-
+    console.log("URL: " + BASIC_URL + "/admin/categories");
+    return this.http.get<[]>(BASIC_URL + "/admin/categories" , {
+      headers: this.createAuthHeader()
+    })
   }
+
+  postProduct(categoryId: number, productDto: any) : Observable<any> {
+
+    console.log("URL: " + BASIC_URL + "/admin/categories");
+
+    return this.http.post<[]>(BASIC_URL + "/admin/" + categoryId + "/product", productDto,
+      {
+        headers: this.createAuthHeader()
+      }
+    )
+  }
+
+  getAllProductsByCategory(categoryId: number) : Observable<any> {
+
+    console.log("URL: " + BASIC_URL + "/admin/" + categoryId + "/products");
+    return this.http.get<[]>(BASIC_URL + "/admin/" + categoryId + "/products" , {
+      headers: this.createAuthHeader()
+    })
+  }
+
+
 
   createAuthHeader(): HttpHeaders {
-    const token = LocaldbService.getToken(); // Ensure this retrieves the token correctly
 
+    const token = LocaldbService.getToken();
     console.log("Token", token)
     return new HttpHeaders({
       Authorization: `Bearer ${token}`

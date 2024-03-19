@@ -1,0 +1,45 @@
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.category-details {
+  margin-bottom: 10px;
+}
+
+.category-details h2 {
+  margin-top: 0;
+}
+
+.category-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+.category-buttons button {
+  padding: 8px 16px;
+  background-color: #007bff; /* Adjust button background color */
+  color: #fff; /* Adjust button text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.category-buttons button:hover {
+  background-color: #0056b3; /* Adjust button background color on hover */
+}
+

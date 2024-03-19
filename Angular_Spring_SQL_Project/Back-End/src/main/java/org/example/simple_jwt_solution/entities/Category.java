@@ -2,6 +2,7 @@ package org.example.simple_jwt_solution.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.example.simple_jwt_solution.dto.CategoryDto;
 
 @Data
 @Entity
@@ -19,5 +20,19 @@ public class Category {
     @Lob
     @Column(columnDefinition = "longblob")
     private byte[] img;
+
+    public CategoryDto getCategoryDto() {
+
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(this.id);
+        categoryDto.setName(this.name);
+        categoryDto.setDescription(this.description);
+        categoryDto.setReturnedImg(this.img);
+
+        return categoryDto;
+
+    }
+
+
 
 }

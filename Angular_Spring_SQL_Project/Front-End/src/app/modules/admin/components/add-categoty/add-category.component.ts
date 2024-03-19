@@ -36,15 +36,16 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onSubmit() {
+
     const categoryName = this.categoryForm.get('categoryName').value;
     const categoryType = this.categoryForm.get('categoryType').value;
     const categoryImg  = this.categoryForm.get('categoryImage').value;
 
     const formData : FormData = new FormData()
 
-    formData.append("img", categoryImg)
     formData.append("name", categoryName)
     formData.append("description", categoryType)
+    formData.append("img", categoryImg)
 
     this.adminService.postCategory(formData)
 
@@ -59,6 +60,7 @@ export class AddCategoryComponent implements OnInit {
 
         error: (err)  => {
           console.log("Error", err);
+          console.log("Status", err.status);
           this.toastService.error('Unable to create category ' + err.error.name + ' Code ' + err.error.status, 'Error', {
             positionClass: 'toast-bottom-right'
           });

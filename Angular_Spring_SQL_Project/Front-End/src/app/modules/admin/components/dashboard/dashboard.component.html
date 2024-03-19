@@ -1,1 +1,23 @@
-<p>ADMIN dashboard works!</p>
+<div class="search-container">
+  <input class="search-input" type="text" [(ngModel)]="searchTerm" placeholder="Search categories..." (ngModelChange)="applyFilter()">
+</div>
+
+<div class="category-list">
+
+  <div *ngFor="let category of categories" class="category-item">
+    <div class="category-details">
+      <h2>{{ category.name }}</h2>
+      <p>{{ category.description }}</p>
+    </div>
+    <div class="category-image">
+      <img [src]="category.img" alt="Category Image">
+    </div>
+    <div class="category-buttons">
+      <button (click)="addInfo(category)">Add Product</button>
+      <button (click)="viewProducts(category)">View Products</button>
+    </div>
+
+  </div>
+
+
+</div>

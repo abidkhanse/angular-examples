@@ -1,0 +1,37 @@
+<div class="category-container">
+  <h2>Add Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" formControlName="productName">
+      <div *ngIf="productForm.get('productName').invalid && productForm.get('productName').touched" class="error-message">
+        Product Name is required.
+      </div>
+    </div>
+    <div>
+      <label for="productPrice">Price:</label>
+      <input type="text" id="productPrice" formControlName="productPrice">
+      <div *ngIf="productForm.get('productPrice').invalid && productForm.get('productPrice').touched" class="error-message">
+        Price is required.
+      </div>
+    </div>
+    <div>
+      <label for="productDescription">Description:</label>
+      <input type="text" id="productDescription" formControlName="productDescription">
+      <div *ngIf="productForm.get('productDescription').invalid && productForm.get('productDescription').touched" class="error-message">
+        Product type is required.
+      </div>
+    </div>
+    <div>
+      <label for="productImage">Product Image:</label>
+      <input type="file" id="productImage" (change)="onFileSelected($event)" accept="image/*">
+      <div *ngIf="productForm.get('productImage').invalid && productForm.get('productImage').touched" class="error-message">
+        Please select an image.
+      </div>
+    </div>
+    <div *ngIf="selectedImage">
+      <img [src]="selectedImage" alt="Selected Image" class="selected-image">
+    </div>
+    <button type="submit" [disabled]="productForm.invalid">Add</button>
+  </form>
+</div>
