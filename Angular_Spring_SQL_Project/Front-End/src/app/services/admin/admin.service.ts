@@ -48,10 +48,17 @@ export class AdminService {
     })
   }
 
+  getProductById(productId: number) : Observable<any> {
+
+    let url =  BASIC_URL + "/admin/product/" + productId
+    console.log("URL", url)
+    return this.http.get<[]>(url , {
+      headers: this.createAuthHeader()
+    })
+  }
 
 
   createAuthHeader(): HttpHeaders {
-
     const token = LocaldbService.getToken();
     console.log("Token", token)
     return new HttpHeaders({
@@ -59,5 +66,14 @@ export class AdminService {
     });
   }
 
+  deleteProductById(id: any) : Observable<any>  {
+
+    let url =  BASIC_URL + "/admin/product/" + id
+    console.log("URL: " , url);
+    return this.http.delete<[]>(url , {
+      headers: this.createAuthHeader()
+    })
+
+  }
 
 }

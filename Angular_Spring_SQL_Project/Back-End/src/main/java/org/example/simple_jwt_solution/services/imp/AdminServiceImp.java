@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
@@ -79,8 +78,31 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public List<ProductDto> getAllProductsByCategory(Integer categoryId) {
-
         return productRepository.findAllByCategoryId(categoryId).stream().map(Product::getProductDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public ResultResponse deleteProduct(Integer productId) {
+
+        ResultResponse response = new ResultResponse("Product ID" + productId);
+
+        Optional<Product> optional = productRepository.findById(productId);
+        if (optional.isPresent()) {
+            productRepository.deleteById(productId);
+            response.setStatus(HttpStatus.OK);
+            response.setMessage(optional.get().getName() + " product removed successfully");
+            response.setId(optional.get().getId());
+        }
+
+        return response;
+
+    }
+
+    @Override
+    public ProductDto getProductById(Integer productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        return optionalProduct.map(Product::getProductDto).orElse(null);
+
 
     }
 

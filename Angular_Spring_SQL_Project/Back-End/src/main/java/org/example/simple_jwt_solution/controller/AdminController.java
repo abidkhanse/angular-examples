@@ -65,10 +65,33 @@ public class AdminController {
         if (list == null || list.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(list);
-// http://localhost:8000/admin/39/products
+
     }
+
+    @DeleteMapping("/product/{productId}")
+    public ResponseEntity<ResultResponse> deleteProduct(@PathVariable Integer productId) {
+
+        ResultResponse result = adminService.deleteProduct(productId);
+        if (result.getId() < 0) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Integer productId) {
+
+        ProductDto productDto = adminService.getProductById(productId);
+        if (productDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(productDto);
+
+    }
+
+
 
 
 }

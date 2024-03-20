@@ -1,12 +1,26 @@
-<div class="product-list">
-  <div *ngFor="let product of products" class="product-item">
-    <div class="product-image">
-      <img [src]="product.img" alt="Product Image">
-    </div>
-    <div class="product-details">
-      <h2>{{ product.name }}</h2>
-      <p>{{ product.description }}</p>
-      <p>Category: {{ product.category }}</p>
+<div class="product-container">
+  <div class="product-list">
+    <div *ngFor="let product of products" class="product-item">
+
+      <div class="product-image">
+        <img [src]="product.img" alt="Product Image">
+      </div>
+
+      <div class="product-details">
+        <h2>{{ product.name }}</h2>
+        <div class="divider"></div> <!-- Top divider line -->
+        <div class="price-line">
+          <p><strong>Description:</strong> {{ product.description }}</p>
+          <p><strong>Category:</strong> {{ product.categoryName }}</p>
+          <p><strong>Price:</strong> {{ product.price }}</p>
+        </div>
+        <div class="divider"></div> <!-- Top divider line -->
+        <div class="delete-button-container">
+          <button (click)="deleteProduct(product.id)" class="delete-button">Delete</button>
+          <button (click)="updateProduct(product.id)" class="update-button">Update</button>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
