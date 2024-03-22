@@ -16,10 +16,10 @@ import {Router, RouterModule} from "@angular/router";
 })
 export class DashboardComponent implements OnInit {
 
-  categories: any = []
+  categories: any         = []
   filteredCategories: any = []
-  tempCategories = []
-  searchTerm = '';
+  tempCategories   = []
+  searchTerm= '';
 
   @ViewChild('searchInput') searchInput: ElementRef;
   constructor( private service: AdminService, private router: Router) { }
@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
 
   // This filter is working but can be improved
   applyFilter() {
+
+
     console.log("applyFilter", this.searchTerm.toLowerCase())
     this.filteredCategories = this.categories.filter(
       category => category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
@@ -42,6 +44,8 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+
+  // abid asks: How can i implement to get the records in chuncks....
   getAllCategories() {
 
     this.categories = []

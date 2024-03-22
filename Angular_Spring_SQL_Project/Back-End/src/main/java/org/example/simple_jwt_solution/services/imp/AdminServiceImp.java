@@ -106,4 +106,39 @@ public class AdminServiceImp implements AdminService {
 
     }
 
+    @Override
+    public ResultResponse updateProduct(Integer productId, ProductDto productDto) throws IOException {
+
+        ResultResponse response = new ResultResponse(productDto.getName());
+
+        Optional<Product> optional = productRepository.findById(productId);
+
+        if (optional.isPresent()) {
+
+            Product product = optional.get();
+            product.setName(productDto.getName());
+            product.setPrice(productDto.getPrice());
+            product.setDescription(productDto.getDescription());
+
+            if (productDto.getImg() != null) {
+                product.setImg(productDto.getImg().getBytes());
+            }
+
+            product = productRepository.save(product);
+
+            if (product.getId() > 0) {
+
+                response.setStatus(HttpStatus.OK);
+                response.setId(product.getId());
+
+            }
+
+        }
+
+        return response;
+
+
+
+    }
+
 }

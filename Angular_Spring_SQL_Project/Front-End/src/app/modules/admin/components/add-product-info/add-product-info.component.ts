@@ -49,6 +49,11 @@ export class AddProductInfoComponent implements OnInit {
 
   }
 
+  // abid asks:  collecting forms values and collecting it formData is correct way to do that?
+  // or should i create an interface and send it to API
+
+  // similarly what about other way around, if i would get the same interface from Back end.
+  // I can save it in this interface from res
   onSubmit() {
 
     const productName         = this.productForm.get('productName').value;

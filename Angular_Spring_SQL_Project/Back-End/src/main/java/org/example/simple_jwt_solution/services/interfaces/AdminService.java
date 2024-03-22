@@ -20,4 +20,6 @@ public interface AdminService {
     ResultResponse deleteProduct(Integer productId);
 
     ProductDto getProductById(Integer productId);
+
+    ResultResponse updateProduct(Integer productId, ProductDto productDto) throws IOException;
 }

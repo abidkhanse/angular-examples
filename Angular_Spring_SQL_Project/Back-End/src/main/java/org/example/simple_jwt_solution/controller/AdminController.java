@@ -91,7 +91,17 @@ public class AdminController {
 
     }
 
+    @PutMapping("/product/{productId}")
+    public ResponseEntity<ResultResponse> updateProduct(@PathVariable Integer productId, @ModelAttribute ProductDto productDto) throws IOException {
 
+        ResultResponse result = adminService.updateProduct(productId, productDto);
+        if (result.getId() < 0) {
+            return ResponseEntity.badRequest().body(result);
+        }
+
+        return ResponseEntity.ok(result);
+
+    }
 
 
 }

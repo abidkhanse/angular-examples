@@ -55,6 +55,20 @@ export class AdminService {
     return this.http.get<[]>(url , {
       headers: this.createAuthHeader()
     })
+
+  }
+
+  updateProduct(productId: number, productDto: any) : Observable<any> {
+
+    let url =  BASIC_URL + "/admin/product/" + productId
+
+    console.log("URL", url)
+
+    return this.http.put<[]>(url, productDto,
+      {
+        headers: this.createAuthHeader()
+      }
+    )
   }
 
 
@@ -75,5 +89,7 @@ export class AdminService {
     })
 
   }
+
+
 
 }
