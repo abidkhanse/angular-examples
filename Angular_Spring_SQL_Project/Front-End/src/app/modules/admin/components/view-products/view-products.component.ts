@@ -25,8 +25,6 @@ export class ViewProductsComponent implements OnInit {
 
   ) { }
 
-
-
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {

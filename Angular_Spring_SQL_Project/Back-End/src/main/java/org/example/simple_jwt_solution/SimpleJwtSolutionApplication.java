@@ -23,17 +23,17 @@ public class SimpleJwtSolutionApplication implements CommandLineRunner {
 
     public void run(String... args) {
 
-        User adminAccount = userRepository.findByRole(Role.ADMIN);
+        User adminAccount = userRepository.findByRole(Role.USER);
 
         if (null == adminAccount) {
 
             User user = new User();
 
-            user.setEmail("test@test.com");
-            user.setFirstname("admin");
-            user.setLastname("admin");
-            user.setRole(Role.ADMIN);
-            user.setPassword(new BCryptPasswordEncoder().encode("admin"));
+            user.setEmail("user@test.com");
+            user.setFirstname("user");
+            user.setLastname("user");
+            user.setRole(Role.USER);
+            user.setPassword(new BCryptPasswordEncoder().encode("user"));
             userRepository.save(user);
 
         }

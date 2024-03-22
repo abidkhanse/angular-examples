@@ -1,0 +1,100 @@
+.product-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Set height to occupy the full height of the parent container */
+
+}
+
+.product-list {
+
+  width: 600px; /* Adjust width of the product list */
+  margin: 10px;
+
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  width: 600px; /* Adjust width of the list item */
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc; /* Add border line between items */
+  padding: 10px; /* Add padding to the list item */
+  background-color: floralwhite;
+
+}
+
+.product-image {
+  width: 120px; /* Fixed width for the image container */
+  height: 120px; /* Fixed height for the image container */
+  overflow: hidden;
+  border-radius: 50%; /* Make the image circular */
+  margin-right: 20px; /* Adjust spacing between image and details */
+}
+
+.product-image img {
+  width: 100%; /* Ensure the image fills the container */
+  height: 100%; /* Ensure the image fills the container */
+}
+
+.product-details {
+  flex: 1; /* Allow the details to take remaining space */
+}
+
+.product-details h2 {
+  margin-top: 0;
+  margin-bottom: 5px; /* Add space below heading */
+}
+
+.product-details p {
+  margin: 5px 0; /* Adjust spacing between paragraphs */
+}
+
+.price-line {
+  display: flex; /* Display elements in one line */
+  align-items: center; /* Align items vertically */
+}
+
+.price-line p {
+  margin: 0; /* Remove default paragraph margin */
+  margin-right: 20px; /* Add space between elements */
+}
+
+.delete-button {
+  margin: 20px;
+  padding: 10px 20px; /* Adjust button padding */
+  background-color: red; /* Set button background color */
+  color: white; /* Set button text color */
+  border: none; /* Remove button border */
+  border-radius: 4px; /* Add button border radius */
+  cursor: pointer; /* Set cursor to pointer on hover */
+}
+
+.divider {
+  border-top: 1px solid #ccc; /* Add top and bottom border */
+  margin: 10px 0; /* Adjust spacing above and below the divider */
+}
+
+.button-container {
+  display: flex; /* Make the container a flex container */
+  justify-content: space-between; /* Space elements evenly within the container */
+}
+
+.update-button {
+  padding: 5px 10px; /* Adjust button padding */
+  background-color: blue; /* Set button background color */
+  color: white; /* Set button text color */
+  border: none; /* Remove button border */
+  border-radius: 4px; /* Add button border radius */
+  cursor: pointer; /* Set cursor to pointer on hover */
+}
+
+.delete-button {
+  padding: 5px 10px; /* Adjust button padding */
+  background-color: red; /* Set button background color */
+  color: white; /* Set button text color */
+  border: none; /* Remove button border */
+  border-radius: 4px; /* Add button border radius */
+  cursor: pointer; /* Set cursor to pointer on hover */
+}
+

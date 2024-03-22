@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
 
   viewProducts(category: any) {
     this.router.navigateByUrl(`/admin/${category.id}/products`);
-
   }
 
 }

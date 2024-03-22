@@ -105,13 +105,15 @@ export class UpdateProductComponent implements OnInit {
       next: (res)   => {
 
         this.productForm.get('productName').setValue(res.name);
+
         this.productForm.get('productPrice').setValue(res.price);
+
         this.productForm.get('productDescription').setValue(res.description);
+
         this.productForm.get('productImage').setValue(this.selectedImage = 'data:image/jpeg;base64,' + res.returnedImg);
 
-        this.productForm.patchValue(res)
-
         console.log("Result", res );
+
       },
 
       error: (err)  => {
