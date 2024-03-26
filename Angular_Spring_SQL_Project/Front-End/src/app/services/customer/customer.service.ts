@@ -24,14 +24,30 @@ export class CustomerService {
   }
 
   getAllProductsByCategory(categoryId: number) : Observable<any> {
-
     let url = BASIC_URL + "/customer/" + categoryId + "/products"
     console.log("URL: " ,url);
-
     return this.http.get<[]>(url , {
       headers: this.createAuthHeader()
     })
+  }
 
+
+  postReservation(reservationDto : any) : Observable<any> {
+    let url = BASIC_URL + "/customer/reservation"
+    console.log("URL: " ,url);
+    reservationDto.customerId = LocaldbService.getUserId()
+    return this.http.post<[]>(url , reservationDto, {
+      headers: this.createAuthHeader()
+    })
+  }
+
+  getAllReservations() : Observable<any> {
+
+    let url = BASIC_URL + "/customer/reservations/" + LocaldbService.getUserId()
+    console.log("URL:", url);
+    return this.http.get<[]>(url , {
+      headers: this.createAuthHeader()
+    })
 
   }
 

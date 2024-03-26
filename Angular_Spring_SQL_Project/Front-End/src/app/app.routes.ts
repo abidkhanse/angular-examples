@@ -10,7 +10,6 @@ export const routes: Routes = [
     {path: '', redirectTo: 'signin', pathMatch: 'full' },
     {path: "admin" , loadChildren : () => import("./modules/admin/admin-routing.module").then(module => AdminModule) },
     {path: "customer" , loadChildren : () => import("./modules/customer/customer-routing.module").then(module => CustomerModule) },
-
 ];
 
 

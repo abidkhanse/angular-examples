@@ -3,6 +3,7 @@ package org.example.simple_jwt_solution.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
+import org.example.simple_jwt_solution.dto.ReservationDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
 import org.example.simple_jwt_solution.services.interfaces.CustomerService;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,29 @@ public class CustomerController {
         return ResponseEntity.ok(list);
 
     }
+
+    @PostMapping("/reservation")
+    public ResponseEntity<ResultResponse> postCategory(@RequestBody ReservationDto reservationDto) {
+
+        ResultResponse result = customerService.postReservation(reservationDto);
+        if (result.getId() < 0) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+
+    }
+
+    @GetMapping("/reservations/{customerId}")
+    public ResponseEntity<List<ReservationDto>> getAllReservationsByUser(@PathVariable Integer customerId) {
+
+        List<ReservationDto> list = customerService.getAllReservationsByUser(customerId);
+        if (list == null || list.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(list);
+
+    }
+
 
 /*
 

@@ -14,7 +14,7 @@
   </nav>
 </div>
 
-<div *ngIf="isAdminloggedIn">
+<div *ngIf="isAdminLoggedIn">
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">Restaurant Management System</div>
@@ -39,18 +39,31 @@
   </nav>
 </div>
 
-<div *ngIf="isCustomerloggedIn">
+<div *ngIf="isCustomerLoggedIn">
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">Restaurant Management System</div>
+
       <ul class="navbar-nav">
+
         <li class="nav-item">
             <a routerLink="./customer/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
         </li>
+
+        <li class="nav-item">
+          <a routerLink="./customer/reservation" routerLinkActive="active" class="nav-link">Book a Table</a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="./customer/reservations" routerLinkActive="active" class="nav-link">Reservations</a>
+        </li>
+
         <li class="nav-item">
             <a routerLink="./signin" routerLinkActive="active" class="nav-link" (click)="logout()">Logout</a>
         </li>
+
       </ul>
+
     </div>
   </nav>
 </div>

@@ -13,7 +13,7 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-signin',
   standalone: true,
   imports: [
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
     RouterModule
@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
   signInForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastService: ToastrService,
     private router: Router
@@ -46,32 +46,34 @@ export class SigninComponent implements OnInit {
 
           .subscribe( {
 
-            next: (res)   => { 
+            next: (res)   => {
 
-              console.log("Status: ", res.status) 
-              console.log("Token: ", res.token) 
+              console.log("Status: ", res.status)
+              console.log("Token: ", res.token)
+              console.log("UserId: ", res.userId)
 
               LocaldbService.saveToken(res.token)
               LocaldbService.saveRole(res.role)
+              LocaldbService.saveUserId(res.userId)
 
               this.toastService.success('Login successful!', 'Success' , {
-                positionClass: 'toast-bottom-right' 
+                positionClass: 'toast-bottom-right'
               });
-              
+
               if(res.role === "ADMIN") {
                 this.router.navigateByUrl("admin/dashboard")
               } else if(res.role === "USER") {
                 this.router.navigateByUrl("customer/dashboard")
               }
-              
+
             },
             error: (err)  => {
               console.log("Error: ", err)
               this.toastService.error(err.error, "Error", {
-                positionClass: 'toast-bottom-right' 
+                positionClass: 'toast-bottom-right'
               });
             },
-            complete: ()  => console.log("Exerything looks good")
+            complete: ()  => console.log("Everything looks good")
           })
     }
   }

@@ -29,9 +29,13 @@ export class ViewProductsComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {
+
       this.category_id = params['category-id']
+
     })
+
     console.log("category_id", this.category_id)
+
     this.getAllProducts()
 
   }
@@ -58,4 +62,6 @@ export class ViewProductsComponent implements OnInit {
 
       })
   }
+
+
 }

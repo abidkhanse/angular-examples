@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
+    RouterOutlet,
     RouterModule,
     CommonModule
   ],
@@ -17,10 +17,10 @@ import { CommonModule } from '@angular/common';
 
 export class AppComponent {
 
-  isAdminloggedIn : boolean = LocaldbService.isAdminLoggedIn()
-  isCustomerloggedIn : boolean = LocaldbService.isCustomerLoggedIn()
+  isAdminLoggedIn : boolean = LocaldbService.isAdminLoggedIn()
+  isCustomerLoggedIn : boolean = LocaldbService.isCustomerLoggedIn()
   isSessionActive : boolean = LocaldbService.isSessionActive()
-  
+
   constructor(
     private router: Router
   ) {}
@@ -28,9 +28,9 @@ export class AppComponent {
   updateStatus() {
 
     this.isSessionActive = LocaldbService.isSessionActive()
-    this.isCustomerloggedIn = LocaldbService.isCustomerLoggedIn()
-    this.isAdminloggedIn = LocaldbService.isAdminLoggedIn()
-  
+    this.isCustomerLoggedIn = LocaldbService.isCustomerLoggedIn()
+    this.isAdminLoggedIn = LocaldbService.isAdminLoggedIn()
+
   }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class AppComponent {
   }
 
   goToCategoty() {
-      
+
   }
 
   logout() {

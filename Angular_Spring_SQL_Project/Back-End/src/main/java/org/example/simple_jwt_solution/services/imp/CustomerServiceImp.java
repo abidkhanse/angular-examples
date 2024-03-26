@@ -2,11 +2,13 @@ package org.example.simple_jwt_solution.services.imp;
 
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
+import org.example.simple_jwt_solution.dto.ReservationDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
-import org.example.simple_jwt_solution.entities.Category;
-import org.example.simple_jwt_solution.entities.Product;
+import org.example.simple_jwt_solution.entities.*;
 import org.example.simple_jwt_solution.repository.CategoryRepository;
 import org.example.simple_jwt_solution.repository.ProductRepository;
+import org.example.simple_jwt_solution.repository.ReservationRepository;
+import org.example.simple_jwt_solution.repository.UserRepository;
 import org.example.simple_jwt_solution.services.interfaces.AdminService;
 import org.example.simple_jwt_solution.services.interfaces.CustomerService;
 import org.springframework.beans.BeanUtils;
@@ -23,10 +25,17 @@ public class CustomerServiceImp implements CustomerService {
 
     public final CategoryRepository categoryRepository;
     public final ProductRepository productRepository;
+    public final ReservationRepository reservationRepository;
 
-    CustomerServiceImp(CategoryRepository categoryRepository, ProductRepository productRepository) {
-        this.categoryRepository = categoryRepository;
-        this.productRepository = productRepository;
+    public final UserRepository userRepository;
+
+    CustomerServiceImp(CategoryRepository categoryRepository, ProductRepository productRepository, ReservationRepository reservationRepository, UserRepository userRepository) {
+
+        this.categoryRepository     = categoryRepository;
+        this.productRepository      = productRepository;
+        this.reservationRepository  = reservationRepository;
+        this.userRepository         = userRepository;
+
     }
 
     @Override
@@ -38,6 +47,41 @@ public class CustomerServiceImp implements CustomerService {
     public List<ProductDto> getAllProductsByCategory(Integer categoryId) {
         return productRepository.findAllByCategoryId(categoryId).stream().map(Product::getProductDto).collect(Collectors.toList());
     }
+
+    @Override
+    public ResultResponse postReservation(ReservationDto reservationDto) {
+
+        Optional<User> optional = userRepository.findById(reservationDto.getCustomerId());
+
+        ResultResponse response = new ResultResponse(reservationDto.getTableType());
+
+        if (optional.isPresent()) {
+
+            Reservation reservation = new Reservation();
+            reservation.setTableType(reservationDto.getTableType());
+            reservation.setDateTime(reservationDto.getDateTime());
+            reservation.setDescription(reservationDto.getDescription());
+            reservation.setUser(optional.get());
+            reservation.setReservationStatus(ReservationStatus.PENDING);
+
+            Reservation reservation1 = reservationRepository.save(reservation);
+            response.setId(reservation1.getId());
+            response.setStatus(HttpStatus.CREATED);
+            response.setMessage("Table reservation request received");
+
+        }
+
+        return response;
+
+    }
+
+    @Override
+    public List<ReservationDto> getAllReservationsByUser(Integer customerId) {
+
+        return reservationRepository.findAllByUserId(customerId).stream().map(Reservation::getReservationDto).toList();
+
+    }
+
 
     /*
     @Override

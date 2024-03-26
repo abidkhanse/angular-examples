@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="heading-container">
+    <h1>Reservation request</h1> <!-- Heading added -->
+  </div>
+
+  <form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+
+    <div class="table-type">
+      <h3>Table Type</h3>
+      <select formControlName="tableType">
+        <option *ngFor="let type of tableTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="datetime-picker">
+      <h3>Date Time Picker</h3>
+      <input type="datetime-local" formControlName="dateTime">
+    </div>
+
+    <div class="description">
+      <h3>Description</h3>
+      <textarea rows="5" formControlName="description"></textarea>
+    </div>
+
+    <div class="submit-button">
+      <button type="submit">Submit</button>
+    </div>
+
+  </form>
+
+</div>

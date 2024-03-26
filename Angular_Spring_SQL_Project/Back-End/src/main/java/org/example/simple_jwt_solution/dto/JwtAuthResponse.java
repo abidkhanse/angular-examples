@@ -1,5 +1,6 @@
 package org.example.simple_jwt_solution.dto;
 
+import org.example.simple_jwt_solution.entities.User;
 import org.springframework.http.HttpStatus;
 
 import lombok.Data;
@@ -14,5 +15,7 @@ public class JwtAuthResponse {
     private HttpStatus Status;
 
     private String message;
+
+    private int userId;
 
 }

@@ -2,6 +2,7 @@ package org.example.simple_jwt_solution.services.interfaces;
 
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
+import org.example.simple_jwt_solution.dto.ReservationDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
 
 import java.io.IOException;
@@ -14,6 +15,10 @@ public interface CustomerService {
     List<CategoryDto> getAllCategories();
 
     List<ProductDto> getAllProductsByCategory(Integer categoryId);
+
+    ResultResponse postReservation(ReservationDto reservationDto);
+
+    List<ReservationDto> getAllReservationsByUser(Integer customerId);
 
     //ResultResponse postProduct(Integer categoryId, ProductDto productDto) throws IOException;
 

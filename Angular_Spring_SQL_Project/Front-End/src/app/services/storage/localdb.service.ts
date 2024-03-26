@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const TOKEN = "token"
+const USERID = "userid"
 const ROLE = "role"
 
 @Injectable({
@@ -9,25 +10,34 @@ const ROLE = "role"
 
 export class LocaldbService {
 
-  static saveToken(token: string) {
+  static saveToken(token: string){
     window.localStorage.removeItem(TOKEN)
     window.localStorage.setItem(TOKEN, token)
   }
 
-  static getToken() {
+  static getToken(){
     return window.localStorage.getItem(TOKEN)
   }
 
-  static saveRole(role: string) {
+  static saveRole(role: string){
     window.localStorage.removeItem(ROLE)
     window.localStorage.setItem(ROLE, role)
   }
 
-  static getRole() : string{
+  static getRole() : string {
     return window.localStorage.getItem(ROLE)
   }
 
-  static reset() {
+  static saveUserId(userId: any) {
+    window.localStorage.removeItem(USERID)
+    window.localStorage.setItem(USERID, userId)
+  }
+
+  static getUserId() : string {
+    return window.localStorage.getItem(USERID);
+  }
+
+  static reset(){
     window.localStorage.removeItem(TOKEN)
     window.localStorage.removeItem(ROLE)
   }
@@ -36,12 +46,13 @@ export class LocaldbService {
     return this.getToken() !== null
   }
 
-  static isAdminLoggedIn() : boolean {  
+  static isAdminLoggedIn() : boolean {
     return this.getRole() !== null && this.getRole().toLowerCase() === "admin"
   }
 
   static isCustomerLoggedIn() : boolean {
     return this.getRole() !== null && this.getRole().toLowerCase() !== "admin"
   }
+
 
 }

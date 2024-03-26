@@ -69,7 +69,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
         Optional<User> userOptional = userRepository.findByEmail(signInRequest.getEmail());
 
-        if (!userOptional.isPresent()) {
+        if (userOptional.isEmpty()) {
 
             jwtAuthResponse.setToken(null);
             jwtAuthResponse.setRole(null);
@@ -86,6 +86,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
         jwtAuthResponse.setToken(token);
         jwtAuthResponse.setRole(user.getRole().name());
         jwtAuthResponse.setStatus(HttpStatus.OK);
+        jwtAuthResponse.setUserId(user.getId());
         jwtAuthResponse.setMessage("Success");
 
         return jwtAuthResponse;
