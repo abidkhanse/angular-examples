@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
+import org.example.simple_jwt_solution.dto.ReservationDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
 import org.example.simple_jwt_solution.services.interfaces.AdminService;
 import org.springframework.http.ResponseEntity;
@@ -103,5 +104,25 @@ public class AdminController {
 
     }
 
+
+    @GetMapping("/reservations")
+    public ResponseEntity<List<ReservationDto>> getAllReservationsByUser() {
+        List<ReservationDto> list = adminService.getAllReservations();
+        if (list == null || list.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/reservation/{reservationId}/{status}")
+    public ResponseEntity<ResultResponse> changeReservationStatus(@PathVariable Integer reservationId, @PathVariable String status) {
+
+        ResultResponse result = adminService.changeReservationStatus(reservationId, status);
+        if (result.getId() < 0) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+
+    }
 
 }

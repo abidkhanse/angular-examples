@@ -30,9 +30,7 @@ export class AdminService {
   }
 
   postProduct(categoryId: number, productDto: any) : Observable<any> {
-
     console.log("URL: " + BASIC_URL + "/admin/categories");
-
     return this.http.post<[]>(BASIC_URL + "/admin/" + categoryId + "/product", productDto,
       {
         headers: this.createAuthHeader()
@@ -68,6 +66,27 @@ export class AdminService {
       }
     )
   }
+
+  getAllReservations() : Observable<any> {
+
+    let url = BASIC_URL + "/admin/reservations"
+    console.log("URL:", url);
+    return this.http.get<[]>(url , {
+      headers: this.createAuthHeader()
+    })
+
+  }
+
+  changeReservationStatus(reservationId: number, status: string) : Observable<any> {
+
+    let url = BASIC_URL + `/admin/reservation/${reservationId}/${status}`
+    console.log("URL:", url);
+    return this.http.get<[]>(url , {
+      headers: this.createAuthHeader()
+    })
+
+  }
+
 
   deleteProductById(id: any) : Observable<any>  {
     let url =  BASIC_URL + "/admin/product/" + id

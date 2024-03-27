@@ -1,0 +1,71 @@
+.reservation-headings {
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f0f0; /* Add background color for headings */
+  font-weight: bold; /* Make headings bold */
+}
+
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust the gap between rows */
+}
+
+.reservation-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.reservation-column {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.reservation-column h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.pending {
+  color: red;
+}
+
+.action-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accept-button, .decline-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for smooth color change */
+}
+
+.accept-button:hover, .decline-button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.accept-button:active, .decline-button:active {
+  background-color: #003366; /* Darker blue color when button is pressed */
+}
+
+
+.accept-button {
+  background-color: blue;
+  color: white;
+}
+
+.decline-button {
+  background-color: red;
+  color: white;
+}
+
+.reservation-column button[disabled] {
+  background-color: #cccccc;
+  color: #999999;
+  cursor: not-allowed; /* Optional: Set cursor to indicate disabled state */
+}

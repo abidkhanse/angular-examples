@@ -1,0 +1,32 @@
+.reservation-headings {
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f0f0; /* Add background color for headings */
+  font-weight: bold; /* Make headings bold */
+}
+
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust the gap between rows */
+}
+
+.reservation-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.reservation-column {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.reservation-column h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.pending {
+  color: red;
+}

@@ -25,5 +25,7 @@ public class ReservationDto {
 
     private Integer customerId;
 
+    private String customerName;
+
 
 }

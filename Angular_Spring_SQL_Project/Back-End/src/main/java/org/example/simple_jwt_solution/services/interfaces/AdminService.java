@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.example.simple_jwt_solution.dto.CategoryDto;
 import org.example.simple_jwt_solution.dto.ProductDto;
+import org.example.simple_jwt_solution.dto.ReservationDto;
 import org.example.simple_jwt_solution.dto.ResultResponse;
 
 public interface AdminService {
@@ -22,4 +23,8 @@ public interface AdminService {
     ProductDto getProductById(Integer productId);
 
     ResultResponse updateProduct(Integer productId, ProductDto productDto) throws IOException;
+
+    List<ReservationDto> getAllReservations();
+
+    ResultResponse changeReservationStatus(Integer reservationId, String status);
 }

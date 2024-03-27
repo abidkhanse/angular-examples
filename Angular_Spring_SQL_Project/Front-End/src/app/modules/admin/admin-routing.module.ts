@@ -6,6 +6,7 @@ import {AllCategoriesComponent} from "./components/all-categories/all-categories
 import {AddProductInfoComponent} from "./components/add-product-info/add-product-info.component";
 import {ViewProductsComponent} from "./components/view-products/view-products.component";
 import {UpdateProductComponent} from "./components/update-product/update-product.component";
+import {GetReservationsComponent} from "./components/get-reservations/get-reservations.component";
 
 const routes: Routes = [
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path : ":category-id/product-info", component : AddProductInfoComponent },
   { path : ":category-id/products",     component : ViewProductsComponent },
   { path : "product/:product-id",       component : UpdateProductComponent },
+  { path : "reservations",              component : GetReservationsComponent },
 
 ];
 
