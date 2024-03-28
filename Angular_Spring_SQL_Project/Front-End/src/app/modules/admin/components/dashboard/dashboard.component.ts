@@ -45,14 +45,17 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  // abid asks: How can i implement to get the records in chuncks....
+  // Add pagination
   getAllCategories() {
 
     this.categories = []
     this.service.getAllCategories().subscribe((res) => {
+
       res.forEach(element  => {
+
         element.img = 'data:image/jpeg;base64,' + element.returnedImg;
         this.categories.push(element)
+
       })
       console.log("Result " , res)
       this.tempCategories = this.categories

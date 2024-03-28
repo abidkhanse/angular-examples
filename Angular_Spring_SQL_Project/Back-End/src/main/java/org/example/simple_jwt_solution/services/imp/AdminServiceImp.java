@@ -19,6 +19,7 @@ import org.example.simple_jwt_solution.repository.ReservationRepository;
 import org.example.simple_jwt_solution.services.interfaces.AdminService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -162,6 +163,7 @@ public class AdminServiceImp implements AdminService {
             response.setId(reservation.getId());
             response.setMessage(status);
             response.setStatus(HttpStatus.OK);
+
         }
 
         return response;

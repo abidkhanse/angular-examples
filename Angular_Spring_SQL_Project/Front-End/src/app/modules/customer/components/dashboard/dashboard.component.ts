@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     this.getAllCategories();
   }
 
-  // abid asks: how should I handle the invalid url
+
   getAllCategories(){
 
     this.categories = []

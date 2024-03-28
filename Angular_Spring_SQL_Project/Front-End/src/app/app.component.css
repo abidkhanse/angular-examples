@@ -1,8 +1,8 @@
 .navbar {
-    background-color: #262c82;
-    color: #fff;
-    padding: 20px 10px;
-  }
+  background-color: #262c82;
+  color: #fff;
+  padding: 20px 10px;
+}
 
 .navbar-admin {
   background-color: #822645;
@@ -10,32 +10,34 @@
   padding: 20px 10px;
 }
 
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .navbar-brand {
-    font-size: 1.5rem;
-  }
+.navbar-brand {
+  font-size: 1.5rem;
+  background-color: transparent; /* Set background color to transparent */
+}
 
-  .navbar-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
 
-  .nav-item {
-    margin-left: 10px;
-  }
+.nav-item {
+  margin-left: 10px;
+}
 
-  .nav-link {
-    color: #fff;
-    text-decoration: none;
-  }
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent; /* Set background color to transparent */
+}
 
-  .nav-link:hover {
-    text-decoration: underline;
-  }
+.nav-link:hover {
+  text-decoration: underline;
+}

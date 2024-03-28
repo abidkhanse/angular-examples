@@ -2,14 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {AdminService} from "../../../../services/admin/admin.service";
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-get-reservations',
   standalone: true,
   imports: [
     NgClass,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './get-reservations.component.html',
   styleUrl: './get-reservations.component.css'
@@ -17,7 +18,7 @@ import {NgClass, NgForOf} from "@angular/common";
 
 export class GetReservationsComponent implements OnInit {
 
-  reservations: any
+  reservations = []
 
   constructor( private fb: FormBuilder,
                private adminService: AdminService,
@@ -65,10 +66,9 @@ export class GetReservationsComponent implements OnInit {
   }
 
   decline(reservationId : number) {
-    this.changeReservationStatus(reservationId, 'declined')
+    this.changeReservationStatus(reservationId, 'DISAPPROVED')
   }
 
-  // abid asks: how to refresh this list or how to update the specific element.
   changeReservationStatus(reservationId : number, status: string) {
 
     this.adminService.changeReservationStatus(reservationId, status).subscribe( {
@@ -78,6 +78,20 @@ export class GetReservationsComponent implements OnInit {
         this.toastService.success('Status ' + res.message  +  ' !', 'Success', {
           positionClass: 'toast-bottom-right'
         });
+
+        console.log("Reservations", this.reservations)
+
+        this.reservations = this.reservations.map((res) => {
+
+          if (res.id === reservationId) {
+            return {...res, reservationStatus: status.toUpperCase()}
+          }
+          return res
+
+        })
+
+        console.log("CHANGED RES", this.reservations)
+
       },
 
       error: (err)  => {

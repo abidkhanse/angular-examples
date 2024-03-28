@@ -33,6 +33,7 @@ export class LocaldbService {
     window.localStorage.setItem(USERID, userId)
   }
 
+  // implement without user ID
   static getUserId() : string {
     return window.localStorage.getItem(USERID);
   }

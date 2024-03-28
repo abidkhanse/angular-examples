@@ -1,4 +1,5 @@
 <div class="reservation-list">
+
   <div class="reservation-headings">
     <div class="reservation-column">
       <h3>Customer Name</h3>
@@ -23,30 +24,37 @@
     </div>
   </div>
 
-  <div class="reservation-item" *ngFor="let reservation of reservations">
-    <div class="reservation-column">
-      <p>{{ reservation.customerName }}</p>
-    </div>
-    <div class="reservation-column">
-      <p>{{ reservation.tableType }}</p>
-    </div>
-    <div class="reservation-column">
-      <p>{{ reservation.description }}</p>
-    </div>
-    <div class="reservation-column">
-      <p>{{ getDate(reservation.dateTime) }}</p>
-    </div>
-    <div class="reservation-column">
-      <p>{{ getTime(reservation.dateTime) }}</p>
-    </div>
-    <div class="reservation-column" [ngClass]="{ 'pending': reservation.reservationStatus === 'PENDING' }">
-      <p>{{ reservation.reservationStatus }}</p>
-    </div>
-    <div class="reservation-column action-column">
 
-      <button class="accept-button"  [disabled]="disableAcceptButton(reservation.reservationStatus)" (click)="accept(reservation.id)">Accept</button>
-      <button class="decline-button" [disabled]="disableDeclineButton(reservation.reservationStatus)" (click)="decline(reservation.id)">Decline</button>
 
+    <div class="reservation-item" *ngFor="let reservation of reservations">
+
+      <div class="reservation-column">
+        <p>{{ reservation.customerName }}</p>
+      </div>
+      <div class="reservation-column">
+        <p>{{ reservation.tableType }}</p>
+      </div>
+      <div class="reservation-column">
+        <p>{{ reservation.description }}</p>
+      </div>
+      <div class="reservation-column">
+        <p>{{ getDate(reservation.dateTime) }}</p>
+      </div>
+      <div class="reservation-column">
+        <p>{{ getTime(reservation.dateTime) }}</p>
+      </div>
+      <div class="reservation-column" [ngClass]="{ 'pending': reservation.reservationStatus === 'PENDING' }">
+        <p>{{ reservation.reservationStatus }}</p>
+      </div>
+      <div class="reservation-column action-column">
+
+        <button class="accept-button" [disabled]="disableAcceptButton(reservation.reservationStatus)"
+                (click)="accept(reservation.id)">Accept
+        </button>
+        <button class="decline-button" [disabled]="disableDeclineButton(reservation.reservationStatus)"
+                (click)="decline(reservation.id)">Decline
+        </button>
+      </div>
     </div>
-  </div>
+
 </div>
